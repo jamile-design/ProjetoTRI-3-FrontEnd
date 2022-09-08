@@ -1,0 +1,56 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+
+    {% include 'partials/_menu.html'  %}
+
+    <title>Detalhe Funcionario</title>
+
+    <main>
+       
+        <div class="row">
+            <div class="col-sm-12" style="margin-left: -16rem; margin-top: 0rem;">	
+                <span><strong>Nome: </strong>{{ nome }} {{ sobrenome }}</span>
+            </div>
+        </div>
+        <div class="row">	
+            <div class="col-sm-12" style="margin-left: -250px;">	
+                <span><strong>Cargo: </strong>{{ cargo }}</span>
+            </div> 
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-sm-6" style= "margin-left: 8rem;">
+                <img style="width: 21rem; height: 20rem; margin-top: 0px; margin-left: 20%;" id="foto" src="data:image/jpg;base64,{{foto}}">
+            </div>
+            <div class="col-sm-6" style="text-align: left; margin-left: 43rem; margin-top: -20.2rem; color: white; font-size: 19px;">
+                <span><strong>Id do empregado: </strong>{{id}}</span>
+                <br/>
+                <span><strong>Telefone comercial: </strong>{{telefoneComercial}}</span>
+                <br/>
+                <span><strong>Telefone residencial: </strong>{{telefoneResidencial}}</span>
+                <br/>
+                <span><strong>Telefone celular: </strong>{{telefoneCelular}}</span>
+                <br/>
+                <span><strong>Endereço residencial:</strong>{{endereco}}</span>
+                <br/>
+                <span><strong>Cidade: </strong>{{cidade}}</span>
+                <br/>
+                <span><strong>Estado: </strong>{{estado}}</span>
+                <br/>
+                <span><strong>Código postal: </strong>{{codigoPostal}}</span>
+                <br/>
+                <span><strong>País: </strong>{{pais}}</span>
+                <br/>
+                <span><strong>Website: </strong>{{website}}</span>
+                <br/>
+                <span><strong>Observação: </strong>{{observacao}}</span>
+                <br/>
+            </div>
+        </div>
+
+    </main>
+    
+    <script src="{% static 'js/funcionarios.js' %}" ></script>
+
+{% endblock %}

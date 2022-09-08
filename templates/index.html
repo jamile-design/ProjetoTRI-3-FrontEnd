@@ -1,0 +1,37 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+	<title>Home</title>
+	{% include 'partials/_menu.html' %}
+		
+	<div class="mensagens">
+		<div class="btn btn-primary" id="mensagem"> BOM DIA! </div>
+		<div class="btn btn-primary" id="mensagem2"> BOA TARDE! </div>
+		<div class="btn btn-primary" id="mensagem3"> BOA NOITE! </div>
+	</div>	
+
+	<br />
+	<!-- CONTEUDO HOME -->
+	<div style="display: flex;flex-direction: column;text-align: center;" class="contents">
+		<div class="home" id="home" style="margin-top: 4.5%;">
+			<div class="container" style="width: 46rem;">
+				<table class="table table-bordered text-center">
+					<thead>
+						<tr>
+							<th style="width: 50%; color: white;" scope="col">EMPREGADOS</th>
+							<th style="width: 50%; color: white; " scope="col">ULTIMAS VENDAS REALIZADAS</th>
+						</tr>
+					</thead>
+
+					<tbody id="data-output" style="color: white; font-size: 20px;">
+						
+					</tbody>
+				</table>	
+			</div>
+		</div>
+	</div>
+
+	<script src="{% static 'js/muda-horario.js'%}"></script>
+	<script src="{% static 'js/funcionarios.js'%}"></script>
+{% endblock %}

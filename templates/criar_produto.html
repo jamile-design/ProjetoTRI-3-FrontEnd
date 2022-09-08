@@ -1,0 +1,82 @@
+{% extends 'partials/_base.html' %}
+
+{% block content %}
+<title>Criar Produto</title>
+
+    {% include 'partials/_menu.html' %}
+    <main>
+        <form action="criar_produto" method="post">{% csrf_token %}
+            <section class="form form-row">
+
+                <label >Product code
+                    <input type="text" class="form-control col-sm-3" class="form-control col-md-3" required>
+                </label>
+
+                <label>Product name
+                    <input type="text" class="form-control col-md-3" required>
+                </label>
+
+                <label>Description
+                    <textarea rows="4" cols="50" class="form-control col-md-3" required></textarea>
+                </label>
+
+                <label>Standard cost
+                    <input type="number" class="form-control col-md-3" required>
+                </label>
+
+                <label>List price
+                    <input type="number" class="form-control col-md-3" required>
+                </label>
+
+                <label>Reorder level
+                    <input type="number" class="form-control col-md-3" required>
+                </label>
+
+                <label>Target level
+                    <input type="number" class="form-control col-md-3" required>
+                </label>
+
+                <label>Quantity per unit
+                    <input type="number" class="form-control col-md-3" required>
+                </label>
+
+                <label>Discontinued
+                    <select name="select">
+                        <option value="Descontinuado" selected>Descontinuado</option>
+                        <option value="Continuado">Continuado</option>
+                    </select>
+                </label>
+
+                <label>Minimun reorder quantity
+                    <input type="number" class="form-control col-md-3" required>
+                </label>
+
+                <label>Category
+                    <input type="text" class="form-control col-md-3" required>
+                </label>
+
+                <label>Attachaments
+                    <input type="file" class="form-control col-md-3" required>
+                </label>
+
+                <label>Status
+                    <select name="select">
+                        <option value="D" selected>Disponível</option>
+                        <option value="I">Indisponivel</option>
+                    </select>
+                </label>
+
+                <label>UnitsInStock
+                    <input type="number" class="form-control col-md-3" required>
+                </label>
+
+                <label>Supplyers ids
+                    <input type="number" class="form-control col-md-3" required>
+                </label>
+
+                <input type="submit" value="Enviar">
+
+            </section>
+        </form>
+    </main>
+{% endblock %}

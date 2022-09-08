@@ -1,0 +1,23 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+    <title>Produtos</title>
+    {% include 'partials/_menu.html' %}
+    <div id="produtos2" style="
+        width: 70%;
+        display: block;
+        margin-left: 15%;
+        margin-right: 15%; ">
+        <section id="principal" class="principal ">
+            <div class="load is-animation" id="load">
+            </div>
+        </section>      
+        
+    </div>
+
+   
+     
+
+	<script src="{% static 'js/produtos2.js'%}"></script>	
+{% endblock %}
