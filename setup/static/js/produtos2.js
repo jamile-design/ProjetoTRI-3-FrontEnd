@@ -2,7 +2,6 @@ async function  insereProdutos(data){
     let divProduto = ''
     let div = document.getElementById('produtos2')
     let listaComProdutos = data.results
-    console.log(typeof listaComProdutos);
     for (produto of listaComProdutos){
         divProduto += `
         <div class="products" style="vertical-align:top; width:20%;">
@@ -28,6 +27,7 @@ function listaDeProdutos() {
     })
     .then((results) => {
         results.json().then(data => {
+            console.log(data);
             insereProdutos(data)
         })
         
