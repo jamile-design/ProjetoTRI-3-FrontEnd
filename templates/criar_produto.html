@@ -1,82 +1,123 @@
 {% extends 'partials/_base.html' %}
-
+{% load static %}
 {% block content %}
+<meta charset="UTF-8">
 <title>Criar Produto</title>
 
     {% include 'partials/_menu.html' %}
     <main>
-        <form action="criar_produto" method="post">{% csrf_token %}
-            <section class="form form-row">
+        <form method="post" enctype="multipart/form-data" target="dummyframe" id="form" accept-charset="utf-8">{% csrf_token %}
+            <section class="form-principal" id="form-produtos" >
+                <div class="form-row form-group col-md-6" style="
+                font-size: 18px;
+                color: white;">
+                    <label >Product code
+                        <input type="text"  class="form-control col-md-4" id="product_code" name="product_code" placeholder="Product code">
+                    </label>
+                <!-- </div> -->
 
-                <label >Product code
-                    <input type="text" class="form-control col-sm-3" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Product name
+                        <input type="text" class="form-control col-md-3" id="product_name" name="product_name" placeholder="Product name">
+                    </label>
+                <!-- </div> -->
 
-                <label>Product name
-                    <input type="text" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Description
+                        <textarea rows="4" cols="50" class="form-control col-md-3" id="description" name="description" placeholder="Description"></textarea>
+                    </label>
+                <!-- </div> -->
 
-                <label>Description
-                    <textarea rows="4" cols="50" class="form-control col-md-3" required></textarea>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Standard cost
+                        <input type="number" class="form-control col-md-3" id="standard_cost" name="standard_cost" placeholder="Standard">
+                    </label>
+                <!-- </div> -->
 
-                <label>Standard cost
-                    <input type="number" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>List price
+                        <input type="number" class="form-control col-md-3" id="list_price" name="list_price" placeholder="List price">
+                    </label>
+                <!-- </div> -->
 
-                <label>List price
-                    <input type="number" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Reorder level
+                        <input type="number" class="form-control col-md-3" id="reorder_level" name="reorder_level" placeholder="Reorder Level">
+                    </label>
+                <!-- </div> -->
 
-                <label>Reorder level
-                    <input type="number" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Target level
+                        <input type="number" class="form-control col-md-3" id="target_level" name="target_level" placeholder="Target Level">
+                    </label>
+                <!-- </div> -->
 
-                <label>Target level
-                    <input type="number" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Quantity per unit
+                        <input type="number" class="form-control col-md-3" id="quantity_per_unit" name="quantity_per_unit" placeholder="Quantity Per Unity">
+                    </label>
+                <!-- </div> -->
 
-                <label>Quantity per unit
-                    <input type="number" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Discontinued
+                        <select name="select" id="discontinued" name="discontinued">
+                            <option value="0" selected>Descontinuado</option>
+                            <option value="1">Continuado</option>
+                        </select>
+                    </label>
+                <!-- </div> -->
 
-                <label>Discontinued
-                    <select name="select">
-                        <option value="Descontinuado" selected>Descontinuado</option>
-                        <option value="Continuado">Continuado</option>
-                    </select>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Minimun reorder quantity
+                        <input type="number" class="form-control col-md-3" id="minimun_reorder_quantity" name="minimun_reorder_quantity" placeholder="Minimun reorder quantity">
+                    </label>
+                <!-- </div> -->
 
-                <label>Minimun reorder quantity
-                    <input type="number" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Category
+                        <input type="text" class="form-control col-md-3" id="category" name="category" placeholder="Category">
+                    </label>
+                <!-- </div> -->
 
-                <label>Category
-                    <input type="text" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Attachaments
+                        <input type="file"  accept="image/*" class="form-control col-md-3" id="attachaments" name="attachaments" placeholder="Attachaments" >
+                    </label>
+                <!-- </div> -->
 
-                <label>Attachaments
-                    <input type="file" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Status
+                        <select name="select" id="status" name="status" >
+                            <option value="D" selected>Disponível</option>
+                            <option value="I">Indisponivel</option>
+                        </select>
+                    </label>
+                <!-- </div> -->
 
-                <label>Status
-                    <select name="select">
-                        <option value="D" selected>Disponível</option>
-                        <option value="I">Indisponivel</option>
-                    </select>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>UnitsInStock
+                        <input type="number" class="form-control col-md-3" id="units_in_stock" name="units_in_stock" placeholder="UnitsInStock">
+                    </label>
+                <!-- </div> -->
 
-                <label>UnitsInStock
-                    <input type="number" class="form-control col-md-3" required>
-                </label>
+                <!-- <div class="form-row" > -->
+                    <label>Supplyers ids
+                        <input type="number" class="form-control col-md-3" id="supplyers_id" name="supplyers_id" placeholder="Supplyers">
+                    </label>
+                <!-- </div> -->
 
-                <label>Supplyers ids
-                    <input type="number" class="form-control col-md-3" required>
-                </label>
+                <!-- </div> -->
+                <br>
+                <br>
+                <!-- <input type="submit" value="Enviar" class=" col-md-3" id="btn-enviar"> -->
+                    
+                    <input class=" col-md-3 " type="submit" id="btn-enviar" value="Enviar" >
+                </section>
+            </form>
 
-                <input type="submit" value="Enviar">
-
-            </section>
-        </form>
+          
     </main>
+
+    <script src="{% static 'js/cria_produto.js' %}" ></script>
+
 {% endblock %}
