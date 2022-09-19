@@ -224,14 +224,14 @@ header h1 {
     }
 }
 
-.form{
+.form-principal{
     align-items: center;
     width: 940px;
     margin-left: 20%;
     margin-right: 70px;
 }
 
-.form label{
+.form-principal label{
     display: block;
     margin-top: 20px;
 }
