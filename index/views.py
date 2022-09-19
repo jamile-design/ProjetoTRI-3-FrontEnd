@@ -41,7 +41,7 @@ def detalhando_produto(request, produto_id):
 
 
 def detalhando_funcionario(request, funcionario_id):
-    r = requests.get('https://localhost:44314/funcionario/get/'+str(funcionario_id), verify=False)
+    r = requests.get('https://desafiotrimestral.azurewebsites.net/funcionario/get/'+str(funcionario_id), verify=False)
     funcionario = json.loads(r.content)
 
 

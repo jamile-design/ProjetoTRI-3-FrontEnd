@@ -16,7 +16,7 @@ let unitsInStock = document.getElementById('units_in_stock')
 let supplyersId = document.getElementById('supplyers_id')
 let tagImg = document.getElementById('foto')
 
-let produtoQueSeraEditado = 117;
+let produtoQueSeraEditado;
 
 var myHeaders = new Headers();
 myHeaders.append("Authorization", "Basic UHVibGljbzp1c3VhcmlvcHVibGljbw==");
@@ -51,6 +51,7 @@ fetch(`http://18.231.157.213/api/products/${produtoQueSeraEditado}/`, requestOpt
     supplyersId.value = supId
 
     tagImg['src'] = result.attachaments
+    tagImg.style = 'block'
     console.log(result.attachaments)
 })
   .catch(error => console.log('error', error));

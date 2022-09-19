@@ -1,8 +1,8 @@
 let btnEnviar = document.getElementById('btn-enviar');
 let form = document.querySelector('form')
 
-form.addEventListener('submit', (e)=>{
-    // e.preventDefault();
+btnEnviar.addEventListener('click', (e)=>{
+    e.preventDefault();
     var formData = new FormData();
 
     let productCode = document.getElementById('product_code').value
@@ -53,5 +53,9 @@ form.addEventListener('submit', (e)=>{
     fetch("http://18.231.157.213/api/products/", requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+      .catch(error => console.log('error', error))
+      .finally(() =>{
+        document.location.reload(true);
+      });
+
 })
