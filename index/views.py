@@ -43,7 +43,7 @@ def detalhando_produto(request, produto_id):
 def detalhando_funcionario(request, funcionario_id):
     r = requests.get('https://desafiotrimestral.azurewebsites.net/funcionario/get/'+str(funcionario_id), verify=False)
     funcionario = json.loads(r.content)
-
+    print(funcionario['foto'])
 
 
     funcionario_a_exibir = {

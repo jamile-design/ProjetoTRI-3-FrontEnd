@@ -1,4 +1,4 @@
-fetch('https://localhost:44314/funcionario/getultimasvendasfuncionario') /*pega o endpoint(caminho) de ultimas vendas da API*/
+fetch('https://desafiotrimestral.azurewebsites.net/funcionario/getultimasvendasfuncionario') /*pega o endpoint(caminho) de ultimas vendas da API*/
     .then(function(response){
         return response.json();
     }) /*função passa dados da API para JSON */
@@ -15,7 +15,7 @@ fetch('https://localhost:44314/funcionario/getultimasvendasfuncionario') /*pega 
             ` <!--alterando valores de dentro da tabela de ultimas vendas -->
             <tr>
             <td> ${venda.nomeEmpregado}</td> <!--a coluna de empregados da tabela recebe a variavel venda que foi criada dentro do for  e que referencia todas as chaves do endpoint (nomeEmpregado, idProduto, nomeProduto) e pegando todos os valores da chave nomeEmpregado-->
-            <td> ${venda.nomeProduto}</td> <!--a coluna de ultimas vendas da tabela recebe a variavel venda que foi criada dentro do for  e que referencia todas as chaves do endpoint (nomeEmpregado, idProduto, nomeProduto) e pegando todos os valores da chave nomeProduto-->
+            <td> ${venda.nomeProduto.replace('db_desafio_tri Traders ', '')}</td> <!--a coluna de ultimas vendas da tabela recebe a variavel venda que foi criada dentro do for  e que referencia todas as chaves do endpoint (nomeEmpregado, idProduto, nomeProduto) e pegando todos os valores da chave nomeProduto-->
             </tr>
 
             `;
@@ -25,7 +25,7 @@ fetch('https://localhost:44314/funcionario/getultimasvendasfuncionario') /*pega 
     }) // termina meu for 
 
 function listaDeEmpregados() {
-    fetch('https://localhost:44314/funcionario/getall')
+    fetch('https://desafiotrimestral.azurewebsites.net/funcionario/getall')
         .then(function(response){
             return response.json();
         })
