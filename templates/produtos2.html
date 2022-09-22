@@ -4,20 +4,33 @@
 {% block content %}
     <title>Produtos</title>
     {% include 'partials/_menu.html' %}
-    <div id="produtos2" style="
-        width: 70%;
-        display: block;
-        margin-left: 15%;
-        margin-right: 15%; ">
-        <section id="principal" class="principal ">
-            <div class="load is-animation" id="load">
-            </div>
-        </section>      
-        
-    </div>
+    
+    <section id="paginated-list" aria-live="polite">
 
-   
-     
+        <div id="produtos2" style="
+            width: 70%;
+            display: block;
+            margin-left: 15%;
+            margin-right: 15%; ">
+            <section id="principal" class="principal ">
+                <div class="load is-animation" id="load">
+                </div>
+            </section>      
+            
+        </div>
+    </section>
+
+    <section class="pagination-container">
+        <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
+            &lt;
+        </button>
+
+        <div id="pagination-numbers"></div>
+    
+        <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
+            &gt;
+        </button>
+    </section>
 
 	<script src="{% static 'js/produtos2.js'%}"></script>	
 {% endblock %}

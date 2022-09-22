@@ -13,7 +13,7 @@ btnEnviar.addEventListener('click', (e)=>{
     let reorderLevel = document.getElementById('reorder_level').value
     let targetLevel = document.getElementById('target_level').value
     let quantityPerUnit = document.getElementById('quantity_per_unit').value
-    let discontinued = document.getElementById('discontinued').value
+    let discontinued = document.querySelector('input[name="discontinuado"]:checked').value
     let minimunReorderQuantity = document.getElementById('minimun_reorder_quantity').value
     let category = document.getElementById('category').value
     let attachaments =  document.getElementById('attachaments')
@@ -21,7 +21,12 @@ btnEnviar.addEventListener('click', (e)=>{
     let unitsInStock = document.getElementById('units_in_stock').value
     let supplyersId = document.getElementById('supplyers_id').value
 
-        
+    if (attachaments.files[0] != null){
+      let fotoInForm = document.getElementById('fotoProduto')
+      console.log(fotoInForm);
+
+    }
+
     var myHeaders = new Headers();
     // myHeaders.append("Authorization", "Basic Y2FydmFsaG86UGFudGVyYW5lZ3JhMzAh");
     myHeaders.append("Authorization", `Basic ${btoa('Publico:usuariopublico')}`);
@@ -37,6 +42,7 @@ btnEnviar.addEventListener('click', (e)=>{
     formData.append("discontinued", discontinued)
     formData.append("minimun_reorder_quantity", minimunReorderQuantity)
     formData.append("category", category)
+    console.log(attachaments.files[0])
     formData.append("attachaments", attachaments.files[0], attachaments.value)
     formData.append("status", status)
     formData.append("UnitsInStock", unitsInStock)
