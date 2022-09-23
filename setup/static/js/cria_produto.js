@@ -21,12 +21,6 @@ btnEnviar.addEventListener('click', (e)=>{
     let unitsInStock = document.getElementById('units_in_stock').value
     let supplyersId = document.getElementById('supplyers_id').value
 
-    if (attachaments.files[0] != null){
-      let fotoInForm = document.getElementById('fotoProduto')
-      console.log(fotoInForm);
-
-    }
-
     var myHeaders = new Headers();
     // myHeaders.append("Authorization", "Basic Y2FydmFsaG86UGFudGVyYW5lZ3JhMzAh");
     myHeaders.append("Authorization", `Basic ${btoa('Publico:usuariopublico')}`);
@@ -42,12 +36,10 @@ btnEnviar.addEventListener('click', (e)=>{
     formData.append("discontinued", discontinued)
     formData.append("minimun_reorder_quantity", minimunReorderQuantity)
     formData.append("category", category)
-    console.log(attachaments.files[0])
     formData.append("attachaments", attachaments.files[0], attachaments.value)
     formData.append("status", status)
     formData.append("UnitsInStock", unitsInStock)
-    formData.append("supplyers_ids", "http://18.231.157.213/api/suppliers/"+supplyersId+"/")
-
+    formData.append("supplyers_ids", supplyersId)
     
     var requestOptions = {
       method: 'POST',
@@ -58,10 +50,14 @@ btnEnviar.addEventListener('click', (e)=>{
     
     fetch("http://18.231.157.213/api/products/", requestOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
+      .then(result => {
+        console.log(result)
+        window.location.href = '/produtos'; //redireciona da página de criar produto para a de produtos.
+
+      })
       .catch(error => console.log('error', error))
       .finally(() =>{
-        document.location.reload(true);
+        console.log('requisição feita')
       });
 
 })

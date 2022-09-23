@@ -76,7 +76,6 @@ window.onload = function() {
 }
 
 function mudaaba2(data) {
-    console.log(data);
     
     const divempregados = document.getElementById('empregados');
     const divempregados2 = document.getElementById('empregados2');
