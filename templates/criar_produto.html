@@ -20,7 +20,7 @@
                     
                     <label>Categoria
 
-                        <select name="" id="category">
+                        <select name="" class="form-control" id="category">
                             <option value="Baked Goods & Mixes">Baked Goods & Mixes</option>
                             <option value="Beverages">Beverages</option>
                             <option value="Candy">Candy</option>
@@ -43,16 +43,23 @@
                     <label >Código do produto
                         <input type="text"  class="form-control col-md-4" id="product_code" name="product_code" pattern="[A-Za-z0-9-]+" placeholder="Código do produto">
                     </label>
+                    
+                    <label>Discontinuado</label>
+                        <div class="row">
 
-                    <label>Discontinuado
-                        <label>Sim  <input class="radio-inline " type="radio" id="dicontinuado" value="0" name="discontinuado"></label>
-                        <label>Não  <input class="radio-inline " type="radio" id="dicontinuado" value="1" name="discontinuado"></label>
-                        
-                    </label>
+                            <div class="col-sm-2">
+                                <label>Não  <input class="" type="radio" id="dicontinuado" value="1" name="discontinuado"></label>                               
+
+                            </div>
+
+                            <div class="col-sm-2">
+                                <label>Sim  <input class="" type="radio" id="dicontinuado" value="0" name="discontinuado"></label>
+                            </div>
+                        </div>
                     
                     <label>Fornecedor
                        
-                        <Select id="supplyers_id">
+                        <Select  class="form-control"  id="supplyers_id">
                             <option value="http://18.231.157.213/api/suppliers/1/">Elizabeth A.</option>
                             <option value="http://18.231.157.213/api/suppliers/2/">Weiler</option>
                             <option value="http://18.231.157.213/api/suppliers/3/">Madeleine</option>
@@ -116,7 +123,7 @@
 
                 <!-- <div class="form-row" > -->
                     <label>Status
-                        <select name="select" id="status" name="status" >
+                        <select name="select" id="status" class="form-control" name="status" >
                             <option value="D" selected>Disponível</option>
                             <option value="I">Indisponivel</option>
                         </select>
