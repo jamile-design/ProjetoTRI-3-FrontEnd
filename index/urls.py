@@ -7,6 +7,8 @@ urlpatterns = [
     path('funcionarios/<int:funcionario_id>/', detalhando_funcionario, name='funcionario_detalhado'),
     path('produtos/<int:produto_id>/', detalhando_produto, name='produto_detalhado'),
     path('produtos', exibindo_produtos, name='exibindo_produtos'),
+    path('deleta_produto/<int:id_produto>/', deleta_produto, name='deleta_produto'),
+    path('edita_produto/<int:id_produto>/', edita_produto, name='edita_produto'),
     path('criar_produto', criar_produto, name='criar_produto'),
     path('load', load, name='load'),
 ]

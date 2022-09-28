@@ -67,12 +67,6 @@ def detalhando_funcionario(request, funcionario_id):
     
     return render(request, 'detalhe_funcionario.html', funcionario_a_exibir)
 
-    
-
-
-
-
-
 def exibindo_produtos(request):
     r = requests.get('http://18.231.157.213/api/products/', auth=('Publico', 'usuariopublico'))
     produtos_json = json.loads(r.content)
@@ -91,6 +85,12 @@ def exibindo_produtos(request):
 
 def criar_produto(request):
     return render(request, 'criar_produto.html')
+
+def deleta_produto(request, id_produto):
+    return render(request, 'deleta_produto.html')
+
+def edita_produto(request, id_produto):
+    return render(request, 'edita_produto.html')
 
 def load(request):
     return render(request, 'partials/_load.html',)
