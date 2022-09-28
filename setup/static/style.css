@@ -23,8 +23,8 @@ header h1 {
 .links{
     width: 100%;
     display: flex;
-   justify-content: center;
-   font-size: 22px;
+    justify-content: center;
+    font-size: 22px;
 }
 
 .card-body {

@@ -7,15 +7,31 @@ async function  insereProdutos(data, array){
     let divProduto = ``
     let listaComProdutos = data.results
     for (produto of listaComProdutos){
+        let idProduto = produto.url.replace('http://18.231.157.213/api/products/' , '')
         divProduto += `
         <div class="products" style="vertical-align:top; width:20%;">
-        <a style="text-decoration: none; color:white;" href='produtos/${produto.url.replace('http://18.231.157.213/api/products/' , '')}' >
+        <a style="text-decoration: none; color:white;" href='produtos/${idProduto}' >
         <img style="width: 100%; height: 10rem; margin-right: 0%; cursor: pointer;" id="foto" src="${produto.attachaments}">
         
         <p style="margin-top: 5%; font-size: 22px;text-weight:bold; text-align:center; vertical-align: top;">
         ${produto.product_name.replace('Northwind Traders ', '')}
         </p>
-        </a>                
+        </a>         
+        <a href="deleta_produto/${idProduto}"><img src="static/img/trash_ico.png" alt="Icone da lixeira" style="
+                                                                                                         width: 27px; 
+                                                                                                         height: 27px;
+                                                                                                         float: right;
+                                                                                                         padding: 2px;
+                                                                                                         background:white;
+                                                                                                         "></a>
+                                                                                                    
+        <a href="edita_produto/${idProduto}"><img src="static/img/pencil_ico.png" alt="Icone da lixeira" style="
+                                                                                                         width: 27px; 
+                                                                                                         height: 27px;
+                                                                                                         float: left;
+                                                                                                         padding: 2px;
+                                                                                                         background:white;
+                                                                                                         "></a>                                                        
         </div>
         `
         

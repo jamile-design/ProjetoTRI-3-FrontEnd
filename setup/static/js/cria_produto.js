@@ -1,11 +1,19 @@
+function required(arrErros, elements){
+  elements.forEach((item) =>{
+    if (item.value === null || item.value === '' || item.length === 0){
+      let nomeCampo = `  ${item.placeholder}`
+      arrErros.push(nomeCampo);
+    }
+  });
+}
+
 let btnEnviar = document.getElementById('btn-enviar');
 let form = document.querySelector('form')
 
 btnEnviar.addEventListener('click', (e)=>{
     e.preventDefault();
-    var formData = new FormData();
-
-    let productCode = document.getElementById('product_code').value
+    
+    let productCode = document.getElementById('product_code').value;
     let productName = document.getElementById('product_name').value
     let description = document.getElementById('description').value
     let standardCost = document.getElementById('standard_cost').value
@@ -20,11 +28,15 @@ btnEnviar.addEventListener('click', (e)=>{
     let status = document.getElementById('status').value
     let unitsInStock = document.getElementById('units_in_stock').value
     let supplyersId = document.getElementById('supplyers_id').value
-
+    
+    let fotoEscolhida = document.getElementById('fotoEscolhida');
+    
     var myHeaders = new Headers();
     // myHeaders.append("Authorization", "Basic Y2FydmFsaG86UGFudGVyYW5lZ3JhMzAh");
-    myHeaders.append("Authorization", `Basic ${btoa('Publico:usuariopublico')}`);
+    var formData = new FormData();
 
+    myHeaders.append("Authorization", `Basic ${btoa('Publico:usuariopublico')}`);
+    
     formData.append("product_code", productCode)
     formData.append("product_name", productName)
     formData.append("description", description)
@@ -36,7 +48,12 @@ btnEnviar.addEventListener('click', (e)=>{
     formData.append("discontinued", discontinued)
     formData.append("minimun_reorder_quantity", minimunReorderQuantity)
     formData.append("category", category)
-    formData.append("attachaments", attachaments.files[0], attachaments.value)
+    if (attachaments.files[0] == null){
+      console.log('Sem imagem.');
+    }else{
+      formData.append("attachaments", attachaments.files[0], attachaments.value);
+    }
+    // formData.append("attachaments", attachaments.files[0], attachaments.value)
     formData.append("status", status)
     formData.append("UnitsInStock", unitsInStock)
     formData.append("supplyers_ids", supplyersId)
@@ -48,16 +65,31 @@ btnEnviar.addEventListener('click', (e)=>{
       redirect: 'follow'
     };
     
-    fetch("http://18.231.157.213/api/products/", requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        console.log(result)
-        window.location.href = '/produtos'; //redireciona da página de criar produto para a de produtos.
+    let statusRequest;
 
-      })
-      .catch(error => console.log('error', error))
-      .finally(() =>{
-        console.log('requisição feita')
-      });
+    let arrElements = document.querySelectorAll("input");    
+    let erros = []
 
+
+    required(erros, arrElements);
+    if (erros.length > 0){
+      alert(`Verifique os campos: ${erros}, eles não podem estar em branco.`);
+    }else{
+      fetch("http://18.231.157.213/api/products/", requestOptions)
+        .then(response => {
+          response.text()
+          statusRequest = response.status;
+        })
+        .then(result => {
+          console.log(result)
+          if (statusRequest === 200){
+            window.location.href = '/produtos'; //redireciona da página de criar produto para a de produtos.
+          }
+
+        })
+        .catch(error => console.log('error', error))
+        .finally(() =>{
+          console.log('requisição feita.')
+        });
+    }
 })

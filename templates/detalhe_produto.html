@@ -10,41 +10,45 @@
 
     <title>Detalhe Produto</title>
 </head>
-<body>
+<body style="width: 90%;">
     {% include 'partials/_menu.html' %}
-    <div class="row">
-        <div class="col-sm-12" style=" font-size: 22px;margin-left: 200px; margin-top: 0rem; display: inline-block; color:white; font-weight: bold">	
-            <span><strong>Nome do produto: </strong>{{product_name}}</span>
-        </div>
-    </div>
-    <br/>
-    <div class="row">
-        <div class="col-sm-6" style="margin-left: 8rem;">
-            <img style="display: inline-block; width: 28%; height: 28%; margin-top: 23px; margin-left: 73px;" id="foto" src="{{attachaments}}">
-        <!-- <div class="col-sm-6" style="text-align: left; margin-left: 43rem; margin-bottom: 200px; font-size: 22px;"> -->
-            
-            <div style="display:inline-block; vertical-align: top; margin-top: 20px; margin-left: 40px;font-size: 20px; color:white;">
-                <span><strong>Código do produto: </strong>{{product_code}}</span>
-                <br/>
+    <section style="margin-left: 25rem; ">
+        <div class="row">
+            <!-- <div class="col-sm-12" style=" font-size: 22px;margin-left: 200px; margin-top: 0rem; display: inline-block; color:white; font-weight: bold">	 -->
+            <div class="col-sm-12" style=" font-size: 22px;display: inline-block; color:white; font-weight: bold">	
                 <span><strong>Nome do produto: </strong>{{product_name}}</span>
-                <br/>
-                <span><strong>Descrição do produto: </strong>{{description}}</span>
-                <br/>
-                <span><strong>Custo: </strong>{{standard_cost}}</span>
-                <br/>
-                <span><strong>Preço de venda: </strong>{{list_price}}</span>
-                <br/>
-                <span><strong>Status: </strong>{{quantity_per_unit}}</span>
-                <br/>
-                <span><strong>Categoria: </strong>{{category}}</span>
-                <br/>
-                {% if UnitsInStock > minimun_reorder_quantity %}
-                <span><strong>Estoque: </strong>{{UnitsInStock}}</span>
-                {% else %}
-                <span style="color:red"><strong>Estoque: </strong>Insuficiente</span>
-                {% endif %}
             </div>
         </div>
-    </div>
+        <br/>
+        <div class="row">
+            <div class="col-sm-6" style="">
+                <img style="display: inline-block; width: 32%; height: 32%; margin-top: 23px;" id="foto" src="{{attachaments}}">
+            <!-- <div class="col-sm-6" style="text-align: left; margin-left: 43rem; margin-bottom: 200px; font-size: 22px;"> -->
+                
+                <div style="display:inline-block; margin-top: 20px;font-size: 20px; color:white;">
+                <!-- <div style=""> -->
+                    <span><strong>Código do produto: </strong>{{product_code}}</span>
+                    <br/>
+                    <span><strong>Nome do produto: </strong>{{product_name}}</span>
+                    <br/>
+                    <span><strong>Descrição do produto: </strong>{{description}}</span>
+                    <br/>
+                    <span><strong>Custo: </strong>{{standard_cost}}</span>
+                    <br/>
+                    <span><strong>Preço de venda: </strong>{{list_price}}</span>
+                    <br/>
+                    <span><strong>Status: </strong>{{quantity_per_unit}}</span>
+                    <br/>
+                    <span><strong>Categoria: </strong>{{category}}</span>
+                    <br/>
+                    {% if UnitsInStock > minimun_reorder_quantity %}
+                    <span><strong>Estoque: </strong>{{UnitsInStock}}</span>
+                    {% else %}
+                    <span style="color:red"><strong>Estoque: </strong>Insuficiente</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
