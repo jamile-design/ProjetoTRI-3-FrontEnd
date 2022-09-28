@@ -25,7 +25,7 @@ let tagImg = document.getElementById('fotoEscolhida')
 let produtoQueSeraEditado = idURL;
 
 var myHeaders = new Headers();
-myHeaders.append("Authorization", "Basic UHVibGljbzp1c3VhcmlvcHVibGljbw==");
+myHeaders.append("Authorization", `Basic ${btoa('Publico:usuariopublico')}`);
 
 
 var requestOptions = {
@@ -74,7 +74,7 @@ btnEditar.addEventListener('click', () =>{
 
 
   var myHeaders = new Headers();
-  myHeaders.append("Authorization", "Basic UHVibGljbzp1c3VhcmlvcHVibGljbw==");
+  myHeaders.append("Authorization", `Basic ${btoa('Publico:usuariopublico')}`);
 
   var formData = new FormData();
 

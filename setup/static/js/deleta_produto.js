@@ -59,7 +59,10 @@ fetch(`http://18.231.157.213/api/products/${produtoQueSeraDeletado}/`, requestOp
     
     fetch(`http://18.231.157.213/api/products/${produtoQueSeraDeletado}/`, requestOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
+      .then(result => {
+        console.log(result);
+        window.location.href = '/produtos';
+      })
       .catch(error => console.log('error', error));
 
 })
