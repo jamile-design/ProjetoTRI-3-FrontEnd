@@ -1,16 +1,16 @@
 {% load static %}
     <div class="links">
-        <div class="card" style="background-color: #0693e3; border-color: #0693e3; margin: 1.5%;">
+        <div class="card" style="background-color: #0693e3; border-color: #0693e3; margin: 1.5%; ">
         <div class="card-body">
             <div class="navbars">
                 <div id="navbar">
-                    <a style="color: white;" id="linkHome" href="{% url 'index' %}" >HOME</a>
+                    <a style="color: white;" class="ancoras" id="linkHome" href="{% url 'index' %}" >HOME</a>
                 </div>
                 <div id="navbar">
-                    <a style="color: white;"  id="linkEmpregados" href="{% url 'funcionarios'%}">EMPREGADOS</a>
+                    <a style="color: white;" class="ancoras"  id="linkEmpregados" href="{% url 'funcionarios'%}" >EMPREGADOS</a>
                 </div>
                 <div id="navbar">
-                    <a style="color: white;"   id="linkProdutos" href="{% url 'exibindo_produtos'%}">PRODUTOS</a>
+                    <a style="color: white;" class="ancoras"   id="linkProdutos" href="{% url 'exibindo_produtos'%}">PRODUTOS</a>
                 </div>
             </div>
         </div>

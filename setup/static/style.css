@@ -130,6 +130,10 @@ header h1 {
     font-weight: bold;
 }
 
+.ancoras {
+    text-decoration: none;
+    cursor: pointer;
+}
 
 #linkHome {
 

@@ -45,7 +45,6 @@ async function  insereProdutos(data, array){
     paginationControl++;
 }
 
-
 function pagination(){
     const paginationNumbers = document.getElementById("pagination-numbers");
     const paginatedList = document.getElementById("paginated-list");
@@ -149,7 +148,6 @@ function pagination(){
     });
 
 }
-
 
 function listaDeProdutos() {
     let loading = document.getElementById('principal')
