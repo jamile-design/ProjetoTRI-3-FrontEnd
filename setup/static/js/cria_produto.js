@@ -9,6 +9,21 @@ function required(arrErros, elements){
 
 let btnEnviar = document.getElementById('btn-enviar');
 let form = document.querySelector('form')
+let attachaments =  document.getElementById('attachaments')
+let fotoEscolhida = document.getElementById('fotoEscolhida');
+
+function readImage() {
+  if (this.files && this.files[0]) {
+    var file = new FileReader();
+    file.onload = function(e) {
+      fotoEscolhida.src = e.target.result;
+    };       
+    file.readAsDataURL(this.files[0]);
+  }
+  fotoEscolhida.style.display = 'block'
+}
+
+attachaments.addEventListener("change", readImage, false);
 
 btnEnviar.addEventListener('click', (e)=>{
     e.preventDefault();
@@ -24,12 +39,10 @@ btnEnviar.addEventListener('click', (e)=>{
     let discontinued = document.querySelector('input[name="discontinuado"]:checked').value
     let minimunReorderQuantity = document.getElementById('minimun_reorder_quantity').value
     let category = document.getElementById('category').value
-    let attachaments =  document.getElementById('attachaments')
     let status = document.getElementById('status').value
     let unitsInStock = document.getElementById('units_in_stock').value
     let supplyersId = document.getElementById('supplyers_id').value
     
-    let fotoEscolhida = document.getElementById('fotoEscolhida');
     
     var myHeaders = new Headers();
     // myHeaders.append("Authorization", "Basic Y2FydmFsaG86UGFudGVyYW5lZ3JhMzAh");
@@ -82,7 +95,7 @@ btnEnviar.addEventListener('click', (e)=>{
         })
         .then(result => {
           console.log(result)
-          if (statusRequest === 200){
+          if (statusRequest === 200 || statusRequest === 201 || statusRequest === 202){
             window.location.href = '/produtos'; //redireciona da página de criar produto para a de produtos.
           }
 
