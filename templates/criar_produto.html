@@ -110,11 +110,21 @@
                     </label>
 
                     <label>Custo 
-                        <label>R$ <input type="number" class="col-md-3 form-control" style="width: 250px"  step="0.01" min="0.01" id="standard_cost" name="standard_cost" placeholder="Custo" required></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">R$</span>
+                            </div>
+                            <input type="number" class="col-md-3 form-control" style="width: 250px"  step="0.01" min="0.01" id="standard_cost" name="standard_cost" placeholder="Custo" required>
+                        </div>
                     </label>
 
                     <label>Preço de venda
-                        <label>R$ <input type="number" step="0.01" min="0.01" class="col-md-3 form-control"  style="width: 250px" id="list_price" name="list_price" placeholder="Preço de venda" required></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">R$</span>
+                            </div>
+                            <input type="number" step="0.01" min="0.01" class="col-md-3 form-control"  style="width: 250px" id="list_price" name="list_price" placeholder="Preço de venda" required>
+                        </div>
                     </label>
 
                     <label>Descrição do produto

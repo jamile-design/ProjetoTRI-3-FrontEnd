@@ -181,7 +181,7 @@ header h1 {
 
 .borda-cinza{
     border: 3px solid white;
-    height: 350px;
+    /* height: 350px; */
     width: 80%;
     margin: 60px;
     margin-top: -10%;
@@ -282,4 +282,10 @@ header h1 {
 .pagination-number.active {
     color: #fff;
     background: #0085b6;
+}
+
+.invalid-input{
+    border-color: red;
+    border-style: solid;
+    border-width: thick;
 }

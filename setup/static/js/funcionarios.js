@@ -7,7 +7,7 @@ async function insereFuncionarios(results){
         teste.innerHTML = 
         `
         
-        <div class="borda-cinza"">
+        <div class="borda-cinza">
             <a href="funcionarios/${data.id} " style="text-decoration: none; color: white; text-align: center;">
                 <img style="width: 100%; height: 10rem; margin-right: 0%; cursor: pointer;" id="foto" src="data:image/jpg;base64,${data.foto}">
                 <h5 style="margin: 5%;">
@@ -23,6 +23,22 @@ async function insereFuncionarios(results){
                     ${data.cargo}
                 </p>
             </a>
+
+            <a href="deleta_funcionario/${data.id}"><img src="static/img/trash_ico.png" alt="Icone da lixeira" style="
+                                                                                                            width: 27px; 
+                                                                                                            height: 27px;
+                                                                                                            float: right;
+                                                                                                            padding: 2px;
+                                                                                                            background:white;
+                                                                                                            "></a>
+                                                                                                        
+            <a href="edita_funcionario/${data.id}"><img src="static/img/pencil_ico.png" alt="Icone da lixeira" style="
+                                                                                                            width: 27px; 
+                                                                                                            height: 27px;
+                                                                                                            float: left;
+                                                                                                            padding: 2px;
+                                                                                                            background:white;
+                                                                                                            "></a>    
         </div>
             
 

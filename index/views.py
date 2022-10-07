@@ -8,11 +8,41 @@ def index(request):
 def funcionarios(request):
     return render(request, 'funcionarios.html')
 
+def detalhando_funcionario(request, funcionario_id):
+    r = requests.get('https://desafiotrimestral.azurewebsites.net/funcionario/get/'+str(funcionario_id), verify=False)
+    funcionario = json.loads(r.content)
+
+
+    funcionario_a_exibir = {
+        'funcionario': funcionario,
+        'id': funcionario['id'],
+        'nome': funcionario['nome'],
+        'cargo': funcionario['cargo'],
+        'telefoneComercial': funcionario['telefoneComercial'],
+        'telefoneResidencial': funcionario['telefoneResidencial'],
+        'telefoneCelular': funcionario['telefoneCelular'],
+        'endereco': funcionario['endereco'],
+        'cidade': funcionario['cidade'],
+        'estado': funcionario['estado'],
+        'codigoPostal': funcionario['codigoPostal'],
+        'pais': funcionario['pais'],
+        'foto': funcionario['foto'],
+        'website': funcionario['website'],
+        'observacao': funcionario['observacao'],
+        'sobrenome': funcionario['sobrenome'],
+    }
+
+    
+    return render(request, 'detalhe_funcionario.html', funcionario_a_exibir)
+
+def criar_funcionario(request):
+    return render(request, 'criar_funcionario.html')
+
 def produtos(request):
     return render(request, 'produtos.html')
 
 def detalhando_produto(request, produto_id):
-
+    
     r = requests.get('http://18.231.157.213/api/products/'+str(produto_id), auth=('Publico', 'usuariopublico'))
     produto = json.loads(r.content)
     
@@ -40,32 +70,6 @@ def detalhando_produto(request, produto_id):
     return render(request, 'detalhe_produto.html', produtos_a_exibir)
 
 
-def detalhando_funcionario(request, funcionario_id):
-    r = requests.get('https://desafiotrimestral.azurewebsites.net/funcionario/get/'+str(funcionario_id), verify=False)
-    funcionario = json.loads(r.content)
-
-
-    funcionario_a_exibir = {
-        'funcionario': funcionario,
-        'id': funcionario['id'],
-        'nome': funcionario['nome'],
-        'cargo': funcionario['cargo'],
-        'telefoneComercial': funcionario['telefoneComercial'],
-        'telefoneResidencial': funcionario['telefoneResidencial'],
-        'telefoneCelular': funcionario['telefoneCelular'],
-        'endereco': funcionario['endereco'],
-        'cidade': funcionario['cidade'],
-        'estado': funcionario['estado'],
-        'codigoPostal': funcionario['codigoPostal'],
-        'pais': funcionario['pais'],
-        'foto': funcionario['foto'],
-        'website': funcionario['website'],
-        'observacao': funcionario['observacao'],
-        'sobrenome': funcionario['sobrenome'],
-    }
-
-    
-    return render(request, 'detalhe_funcionario.html', funcionario_a_exibir)
 
 def exibindo_produtos(request):
     r = requests.get('http://18.231.157.213/api/products/', auth=('Publico', 'usuariopublico'))

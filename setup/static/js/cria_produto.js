@@ -1,7 +1,7 @@
 function required(arrErros, elements){
   elements.forEach((item) =>{
     if (item.value === null || item.value === '' || item.length === 0){
-      let nomeCampo = `  ${item.placeholder}`
+      let nomeCampo = `\n  ${item.placeholder}`
       arrErros.push(nomeCampo);
     }
   });
@@ -15,6 +15,7 @@ let fotoEscolhida = document.getElementById('fotoEscolhida');
 function readImage() {
   if (this.files && this.files[0]) {
     var file = new FileReader();
+
     file.onload = function(e) {
       fotoEscolhida.src = e.target.result;
     };       

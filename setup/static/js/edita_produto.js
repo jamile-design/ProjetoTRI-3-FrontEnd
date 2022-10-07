@@ -106,14 +106,23 @@ btnEditar.addEventListener('click', () =>{
     body: formData,
     redirect: 'follow'
   };
+  let statusRequest;
 
   fetch(`http://18.231.157.213/api/products/${idURL}/`, requestOptions)
-    .then(response => response.text())
+    .then(response => {
+      response.text();
+      statusRequest = response.status;
+    })
     .then(result => {
       console.log(result)
-      // window.scrollTo(0, 0);
-      alert(`Produto ${nomeProdutoAlert}, foi editado.`);
-      window.location.href = '/produtos';
+      
+      if (statusRequest === 200 || statusRequest === 201 || statusRequest === 202){
+        alert(`Produto ${nomeProdutoAlert}, foi editado.`);
+        window.location.href = '/produtos'; //redireciona da página de editar produto para a de produtos.
+      }
+      else{
+        alert(`Produto ${nomeProdutoAlert}, não foi editado.`);
+      }
     })
     .catch(error => console.log('error', error));
 
