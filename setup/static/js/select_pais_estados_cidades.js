@@ -11,9 +11,9 @@ let requestOptions = {
 fetch('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json', requestOptions)
 .then(response => response.json())
 .then(result => {
-    console.time('Runtime');
+    // console.time('Runtime');
     insertCountrysStatesAndCitys(result);    
-    console.timeEnd('Runtime');
+    // console.timeEnd('Runtime');
 })
 .catch(error => console.log('error', error));
 
@@ -41,7 +41,7 @@ function insertCountrysStatesAndCitys(result) {
                 StatesNoDuplicated.add(country.subcountry);
             }
         })
-        console.log(StatesNoDuplicated)
+        // console.log(StatesNoDuplicated);
 
         cleanOptionsOfSelectWithId('estadosBrasil');
         StatesNoDuplicated.forEach(state => {
@@ -60,7 +60,7 @@ function insertCountrysStatesAndCitys(result) {
                 CitysNoDuplicated.add(country.name);
             }            
         })
-        console.log(CitysNoDuplicated);
+        // console.log(CitysNoDuplicated);
         
         
         cleanOptionsOfSelectWithId('cidades');
