@@ -38,6 +38,9 @@ def detalhando_funcionario(request, funcionario_id):
 def criar_funcionario(request):
     return render(request, 'criar_funcionario.html')
 
+def deleta_funcionario(request, id_funcionario):
+    return render(request, 'deleta_funcionario.html')
+
 def produtos(request):
     return render(request, 'produtos.html')
 

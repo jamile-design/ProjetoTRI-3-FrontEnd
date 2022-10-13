@@ -1,0 +1,14 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+    <title>Deleta Funcionário</title>
+    {% include 'partials/_menu.html' %}
+
+
+    <section id="principal" class="principal " style="margin-left: 45%;">
+        <div class="load is-animation" id="load"></div>
+    </section>      
+
+    <script src="{% static 'js/deleta_funcionario.js' %}"></script>	
+{% endblock %}
