@@ -1,6 +1,6 @@
 function required(arrErros, elements){
   elements.forEach((item) =>{
-    if (item.value === null || item.value === '' || item.length === 0){
+    if (item.value === null || item.value === '' || item.value.length === 0){
       let nomeCampo = `\n  ${item.placeholder}`
       arrErros.push(nomeCampo);
     }
@@ -8,7 +8,7 @@ function required(arrErros, elements){
 }
 
 let btnEnviar = document.getElementById('btn-enviar');
-let form = document.querySelector('form')
+// let form = document.querySelector('form');
 let attachaments =  document.getElementById('attachaments')
 let fotoEscolhida = document.getElementById('fotoEscolhida');
 
@@ -86,6 +86,7 @@ btnEnviar.addEventListener('click', (e)=>{
 
 
     required(erros, arrElements);
+
     if (erros.length > 0){
       alert(`Verifique os campos: ${erros}, eles não podem estar em branco.`);
     }else{
