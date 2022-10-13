@@ -1,103 +1,154 @@
-let telefonesForm = document.querySelectorAll('.telefone');
-let inputsSomenteLetras = document.querySelectorAll('.letras');
-let regexTelefone = /[a-zA-Z]/ig;
-let regex2Telefone = /["!@#$%¨&*()_+ªº`^~;:?/.,°|\-]/g;
-let regexNãoLetras = /["!@#$%¨&*()_+ªº`^~;:?/.,°|\0-9-]/ig;
-let arrTelephoneErros = [];
-let arrEmptyErros =[]
-let arrFieldsOfNotLetter = [];
-let arrInputs = document.querySelectorAll('input');
+const onlyNumbers = document.querySelectorAll('.only_numbers');
+const arrTelRequireds = document.querySelectorAll('.dez_digito_obrigatorio');
+const inputsOnlyLetter = document.querySelectorAll('.letras');
+const arrAllInputs = document.querySelectorAll('input');
+// let regexAlfabeto = /[a-zA-Z]/ig;
 
-let btnEnviar = document.getElementById('btn-enviar');
+let regexOfTel = /["´'{}[\]!@#$%¨&*()_+ªº`^~;:?£¢¬/.,°^âêôíãõêãõ~eáóéàèò|\a-zA-Z-]/g;
+let regexWithoutLetter = /["'{}[\]!@#$%¨&*()_+ªº^~;:?£¢¬/.,°|\-0-9]/ig;
+let arrErrorsTel = [];
+let arrEmptyFields =[];
+// let arrFieldsOfNotLetter = [];
+// let arrPostalCode = [];
 
-btnEnviar.addEventListener('click', (e) =>{
+let nome = document.getElementById('Nome');
+let anexo = document.getElementById('Anexo');
+let sobrenome = document.getElementById('Sobrenome');
+let cargo = document.getElementById('Cargo');
+let salario = document.getElementById('Salario');
+let telefoneComercial = document.getElementById('telefone_comercial');
+let telefoneResidencial = document.getElementById('telefone_residencial');
+let telefoneCelular = document.getElementById('telefone_celular');
+let paises = document.getElementById('paises');
+let estados = document.getElementById('estadosBrasil');
+let cidades = document.getElementById('cidades');
+let enderecoResidencial = document.getElementById('endereco_residencial');
+let codigoPostal = document.getElementById('codigo_postal');
+let website = document.getElementById('website');
+let observacao = document.getElementById('observacao');
+
+const btnSend = document.getElementById('btn-enviar');
+
+
+function restrinctChar(field, regex, message){
+    function checkchar(e, pattern){
+        const char = String.fromCharCode(e.keyCode);
+    
+        if (char.match(pattern)){
+            // console.log(char);
+            return true;
+        }
+    }
+
+    field.addEventListener('keypress', (e) => {
+        if (checkchar(e, regex)){
+            e.preventDefault();
+            alert(message);
+        }
+    });
+}
+
+onlyNumbers.forEach(input =>{
+    restrinctChar(input, regexOfTel, 'Este campo só pode ter números.');
+});
+
+inputsOnlyLetter.forEach(input => {
+    restrinctChar(input, regexWithoutLetter, 'Este campo só pode ter letras.')
+});
+
+btnSend.addEventListener('click', (e) =>{
     e.preventDefault();
 
-    telefonesForm.forEach(item =>{
-        if (item.value.match(regexTelefone) || item.value.match(regex2Telefone)) {
-            arrTelephoneErros.push(`\n${item.placeholder}`);
-            item.classList.add('invalid-input');
-            // item.style.borderColor = 'red';
-            // item.style.borderStyle = 'solid';
-            // item.style.borderWidth = 'thick';
-            console.log(item);
-        }
-    });
-
-    inputsSomenteLetras.forEach(item => {
-        if (item.value.match(regexNãoLetras)){
-            arrFieldsOfNotLetter.push(`\n${item.placeholder}`);
-        }
-    });
-
-    arrInputs.forEach(input => {
-        if  (input.value === null || input.value == '' || input.length ==0){
-            arrEmptyErros.push(`\n${input.placeholder}`);
+    arrTelRequireds.forEach(item =>{
+        if (item.value.length < 10){
+            arrErrorsTel.push(`\n ${item.placeholder}`)
         }
     })
 
-    if (arrFieldsOfNotLetter.length > 0){
-        alert(`Os campos ${arrFieldsOfNotLetter} \nsó podem ter letras`);
-        arrFieldsOfNotLetter.length = 0;
+    arrAllInputs.forEach(input => {
+        if  (input.value === null || input.value == '' || input.value.length == 0){
+            arrEmptyFields.push(`\n${input.placeholder}`);
+        }
+    })
+
+    if (arrEmptyFields.length > 0){
+        if(observacao.value.length < 1){
+            observacao.value = 'Empty';
+        }else{
+            alert(`Os campos ${arrEmptyFields}\nnão podem estar vazios.`);
+            arrEmptyFields.length = 0;
+        }
     }
-    else if (arrTelephoneErros.length > 0){
-        alert(`Os campos ${arrTelephoneErros}\n não podem ter letras ou caracteres especiais.`);
-        arrTelephoneErros.length = 0;
+    else if (arrErrorsTel.length > 0){
+        alert(`Os campos ${arrErrorsTel}\n não podem ter menos de 10 dígitos.`);
+        arrErrorsTel.length = 0;
     }
-    else if (arrEmptyErros.length > 0 || arrEmptyErros.length !== 0){
-        alert(`Os campos ${arrEmptyErros}\n não podem estar vazios.`);
-        arrEmptyErros.length = 0;
+    else if (codigoPostal.value.length < 6){
+        alert(`O campo ${codigoPostal.placeholder}\n não podem ter menos de 6 dígitos.`);
+        // arrPostalCode.length = 0;
     }
     else{
         alert('form was send.');
         let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-        let formData = new FormData();
+        // let formData = new FormData();
+        
 
-        let name = document.getElementById('Nome');
-        // let anexo = document.getElementById('Anexo');
-        let sobrenome = document.getElementById('Sobrenome');
-        let cargo = document.getElementById('Cargo');
-        let salario = document.getElementById('Salario');
-        let telefoneComercial = document.getElementById('telefone_comercial');
-        let telefoneResidencial = document.getElementById('telefone_residencial');
-        let telefoneCelular = document.getElementById('telefone_celular');
-        let paises = document.getElementById('paises');
-        let estados = document.getElementById('estadosBrasil');
-        let cidades = document.getElementById('cidades');
-        let enderecoResidencial = document.getElementById('endereco_residencial');
-        let codigoPostal = document.getElementById('codigo_postal');
-        let website = document.getElementById('website');
-        let observacao = document.getElementById('observacao');
-
-        formData.append('first_name', name.value);
-        formData.append('last_name', sobrenome.value);
-        formData.append('job_title', cargo.value);
-        formData.append('business_phone', telefoneComercial.value);
-        formData.append('home_phone', telefoneResidencial.value);
-        formData.append('mobile_phone', telefoneCelular.value);
-        formData.append('address', enderecoResidencial.value);
-        formData.append('zip_postal_code', codigoPostal.value);	
-        formData.append('city', cidades.value);
-        formData.append('country_region', paises.value);
-        formData.append('state_province', estados.value);
-        formData.append('notes', observacao.value);
-        formData.append('web_page', website.value);
+        // formData.append('nome', nome.value);
+        // formData.append('sobrenome', sobrenome.value);
+        // formData.append('cargo', cargo.value);
+        // formData.append('telefoneComercial', telefoneComercial.value);
+        // formData.append('telefoneResidencial', telefoneResidencial.value);
+        // formData.append('telefoneCelular', telefoneCelular.value);
+        // formData.append('endereco', enderecoResidencial.value);
+        // formData.append('codigoPostal', codigoPostal.value);	
+        // formData.append('cidade', cidades.value);
+        // formData.append('pais', paises.value);
+        // formData.append('estado', estados.value);
+        // formData.append('observacao', observacao.value);
+        // formData.append('website', website.value);
         // formData.append(, );// aqui iria o salário
-        // formData.append('attachments', anexo.files[0], anexo.value);
+        // formData.append('foto', anexo.files[0], anexo.value); 
+
+        let raw = JSON.stringify({
+            "nome": nome.value,
+            "sobrenome": sobrenome.value,
+            "cargo": cargo.value,
+            "telefoneComercial": telefoneComercial.value,
+            "telefoneResidencial": telefoneResidencial.value,
+            "telefoneCelular": telefoneCelular.value,
+            "endereco": enderecoResidencial.value,
+            "cidade": cidades.value,
+            "estado": estados.value,
+            "codigoPostal": codigoPostal.value,
+            "pais": paises.value,
+            "website": website.value,
+            "observacao": observacao.value,
+            // "foto": anexo.files[0]
+            "foto": null
+        })
     
         let requestOptions = {
             method: 'POST',
-            body: formData,
+            headers: myHeaders,
+            body: raw,
             redirect: 'follow'
         }
 
-        const URLCriarFuncionario = 'https://desafiotrimestral.azurewebsites.net/funcionario/post';
+        const URLCreateEmployee = 'https://desafiotrimestral.azurewebsites.net/funcionario/post';
 
-        fetch(URLCriarFuncionario, requestOptions)
+        const statusResponse = 0;
+        fetch(URLCreateEmployee, requestOptions)
         .then(response => response.json())
         .then(result => {
             console.log(result);
+            if (statusResponse === 200){
+                alert('Funcionario criado.');
+                window.location.href = '/funcionarios'
+            }else{
+                 alert('Funcionario não criado, tente novamente.');
+            }
         })
         .catch(err => console.log(err))
     }
