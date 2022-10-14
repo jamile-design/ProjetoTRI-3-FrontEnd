@@ -58,6 +58,14 @@ header h1 {
     text-decoration: underline;
 }
 
+.current_page_of_navbar{
+    color: #ff6900;
+    transition-timing-function: ease-in-out;
+    -webkit-text-stroke: 1.85px #ff6900;
+    text-decoration: underline;
+    font-size: 24px;
+}
+
 .navbars {
     display: flex;
     justify-content: center;
