@@ -1,6 +1,6 @@
-let dataurl = document.URL;
-let splitbarra = dataurl.split("/");
-let idURL = splitbarra.find(item => item > 0);
+let url = document.URL;
+let barra = url.split("/");
+let idURL = barra.find(item => item > 0);
 
 let nomeProdutoAlert;
 
@@ -56,7 +56,7 @@ fetch(`http://18.231.157.213/api/products/${produtoQueSeraEditado}/`, requestOpt
     tagImg.style.display = 'block'
 
     nomeProdutoAlert =  result.product_name;
-
+    
     if (result.discontinued === '0'){
       descontinuado.checked = true;
     }else{
