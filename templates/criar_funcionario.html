@@ -6,12 +6,15 @@
 
     {% include 'partials/_menu.html' %}
 
-    <main>
-        <form method="POST" enctype="multipart/form-data" target="dummyframe" id="form" accept-charset="utf-8" style="">{% csrf_token %}
-            <div class="form-row form-group col-md-3 form-principal" style="
+    <main style="display: flex;
+                flex-direction: column;
+                align-items: center;">
+        <form method="POST" enctype="multipart/form-data" target="dummyframe" id="form" accept-charset="utf-8" style="width: 78rem;">{% csrf_token %}
+            <div class="form-row form-group col-md-4 form-principal" style="
                 font-size: 18px;
                 color: white;
-                margin-left: 25rem;">
+              
+                ">
 
                 <label>Nome
                     <input type="text" class="form-control col-md-3 letras" id="Nome" name="Nome" placeholder="Nome">
@@ -20,6 +23,11 @@
                 <label>Anexo
                     <input type="file" accept="image/*" class="form-control col-md-3" id="Anexo" name="Anexo" placeholder="Anexo" >
                 </label>
+                <br/>
+
+                <img id="fotoEscolhida" src="" alt="Foto do produto escolhido" style="display: none; max-width: 200px; 
+                max-height: 150px;">
+
 
                 <label>Sobrenome
                     <input type="text" class="form-control col-md-3 letras" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome">
