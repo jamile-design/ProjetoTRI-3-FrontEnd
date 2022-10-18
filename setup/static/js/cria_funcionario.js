@@ -82,28 +82,29 @@ btnSend.addEventListener('click', (e) =>{
         if  (input.value === null || input.value == '' || input.value.length == 0){
             arrEmptyFields.push(`\n${input.placeholder}`);
         }
+
     })
+    if (observacao.value.length === 0 || observacao.value.length === null){
+        arrEmptyFields.push(`\nObservação`);       
+    }
 
     
-    if (arrEmptyFields.length > 0){
-        if(observacao.value.length < 1){
-            observacao.value = 'Empty';
-        }else{
-            alert(`Os campos ${arrEmptyFields}\nnão podem estar vazios.`);
-            arrEmptyFields.length = 0;
-        }
+    if (arrEmptyFields.length > 0){      
+        alert(`Os campos ${arrEmptyFields}\nnão podem estar vazios.`);
+        arrEmptyFields.length = 0;
+        
     }
     else if (arrErrorsTel.length > 0){
         alert(`Os campos ${arrErrorsTel}\n não podem ter menos de 10 dígitos.`);
         arrErrorsTel.length = 0;
     }
     else if (codigoPostal.value.length < 6){
-        alert(`O campo ${codigoPostal.placeholder}\n não podem ter menos de 6 dígitos.`);
+        alert(`O campo ${codigoPostal.placeholder}\n não pode ter menos de 6 dígitos.`);
         // arrPostalCode.length = 0;
     }
     else{
         alert('form was send.');
-        let myHeaders = new Headers();
+        // let myHeaders = new Headers();
         // myHeaders.append("Content-Type", "application/json");
 
         let formData = new FormData();
@@ -123,11 +124,11 @@ btnSend.addEventListener('click', (e) =>{
         formData.append('observacao', observacao.value);
         formData.append('website', website.value);
         // formData.append(, );// aqui iria o salário
-        formData.append('file', anexo.files[0], anexo.value); 
+        formData.append('FotoArquivo', anexo.files[0], anexo.value); 
 
         let requestOptions = {
             method: 'POST',
-            headers: myHeaders,
+            // headers: myHeaders,
             body: formData,
             redirect: 'follow'
         }
@@ -138,7 +139,7 @@ btnSend.addEventListener('click', (e) =>{
         .then(response => response.json())
         .then(result => {
             console.log(result);
-            if (response.status === 200){
+            if (result.status === 200){
                 alert('Funcionario criado.');
                 window.location.href = '/funcionarios'
             }else{
