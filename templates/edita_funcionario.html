@@ -1,0 +1,125 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+<meta charset="UTF-8">
+<title>Criar Funcionario</title>
+
+    {% include 'partials/_menu.html' %}
+
+    <main style="display: flex;
+                flex-direction: column;
+                align-items: center;">
+
+        <h3 class="" style="color: white; font-size: 25px; margin-top: 2rem; border-style: solid; border-color: #0693e3; padding: 15px; border-radius: 5px;">Edita Funcionário</h3>
+
+        <form method="POST" enctype="multipart/form-data" target="dummyframe" id="form" accept-charset="utf-8" style="width: 78rem;">{% csrf_token %}
+            <div class="form-row form-group col-md-4 form-principal" style="
+                font-size: 18px;
+                color: white;
+              
+                ">
+
+                <label>Nome
+                    <input type="text" class="form-control col-md-3 letras" id="Nome" name="Nome" placeholder="Nome">
+                </label>
+
+                <label>Anexo
+                    <input type="file" accept="image/*" class="form-control col-md-3" id="Anexo" name="Anexo" placeholder="Anexo" >
+                </label>
+                <br/>
+
+                <img id="fotoEscolhida" src="" alt="Foto do produto escolhido" style="display: none; max-width: 200px; 
+                max-height: 150px;">
+
+
+                <label>Sobrenome
+                    <input type="text" class="form-control col-md-3 letras" id="Sobrenome" name="Sobrenome" placeholder="Sobrenome">
+                </label>
+
+                <label>Cargo
+                    <input type="text" class="form-control col-md-3 letras" id="Cargo" name="Cargo" placeholder="Cargo" pattern="[a-zA-Z]*">
+                </label>
+
+                <label>Salário
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">R$</span>
+                        </div>
+                        <input type="number" step="0.1" min="0.0" class="form-control col-md-3" id="Salario" name="Salario" placeholder="Salario">
+                    </div>
+                </label>
+
+                <label>Telefone comercial
+                    <input type="tel" class="form-control only_numbers dez_digito_obrigatorio" id="telefone_comercial" maxlength="10" name="Telefone" placeholder="Telefone comercial">
+                </label>
+
+                <label>Telefone residencial
+                    <input type="tel" class="form-control only_numbers dez_digito_obrigatorio" id="telefone_residencial" maxlength="10" name="Telefone" placeholder="Telefone residencial">
+                </label>
+
+                <label>Telefone celular
+                    <input type="tel" class="form-control only_numbers dez_digito_obrigatorio" id="telefone_celular" maxlength="10" name="Telefone" placeholder="Telefone celular">
+                </label>
+                
+                <label>País
+                    <select name="paises" id="paises" class="form-control">
+                        <option value="null">País</option>
+                    </select>
+                   
+                </label>    
+
+                <label id="label-estado">Estado
+                    <select id="estadosBrasil" name="estadosBrasil" class="form-control">
+                        <option value="null">Selecione um País</option>
+                    </select>
+                </label>
+
+                <label id="label-cidade">Cidade
+                    <select id="cidades" name="cidades" class="form-control">
+                        <option value="null">Selecione um estado</option>
+                    </select>
+                </label>
+
+                <label>Endereço residencial
+                    <input type="text" class="form-control" id="endereco_residencial" name="endereco_residencial" placeholder="Endereço residencial">
+                </label>
+
+                <label>Código Postal
+                    <input type="tel" maxlength="6" class="form-control only_numbers" id="codigo_postal" placeholder="Código Postal">
+                </label>
+
+                <label>website
+                    <input type="url" class="form-control" id="website" placeholder="Website">
+                </label>
+
+                <label>Ativo</label>
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label>Não  <input class="" type="radio" id="desativo" value="0" checked="checked" name="ativo"></label>
+                                                            
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label>Sim  <input class="" type="radio" id="ativo" value="1" name="ativo"></label>
+                            
+                            
+                        </div>
+                    </div>
+
+                <label>Observação
+                    <textarea type="text" class="form-control" id="observacao"></textarea>
+                </label>
+
+                <br/>
+
+                <button id="btn-enviar" style="width: 200px; height: 50px;margin-left: 26%; margin-bottom: 100px; border-radius: 8px;" >Enviar</button>
+
+            </div>
+        </form>
+    </main>
+
+    <script src="{% static 'js/edita_funcionario.js' %}"></script>
+
+{% endblock %}

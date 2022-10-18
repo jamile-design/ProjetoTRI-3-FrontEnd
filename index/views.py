@@ -12,6 +12,10 @@ def detalhando_funcionario(request, funcionario_id):
     r = requests.get('https://desafiotrimestral.azurewebsites.net/funcionario/get/'+str(funcionario_id), verify=False)
     funcionario = json.loads(r.content)
 
+    if funcionario['ativo'] == 0:
+        funcionario['ativo'] = 'Não'
+
+    funcionario['ativo'] = 'Sim'
 
     funcionario_a_exibir = {
         'funcionario': funcionario,
@@ -30,6 +34,7 @@ def detalhando_funcionario(request, funcionario_id):
         'website': funcionario['website'],
         'observacao': funcionario['observacao'],
         'sobrenome': funcionario['sobrenome'],
+        'ativo': funcionario['ativo']
     }
 
     
@@ -37,6 +42,9 @@ def detalhando_funcionario(request, funcionario_id):
 
 def criar_funcionario(request):
     return render(request, 'criar_funcionario.html')
+
+def edita_funcionario(request, id_funcionario):
+    return render(request, 'edita_funcionario.html')
 
 def deleta_funcionario(request, id_funcionario):
     return render(request, 'deleta_funcionario.html')
