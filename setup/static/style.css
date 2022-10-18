@@ -173,7 +173,7 @@ header h1 {
 }
 
 .guardaempregados{
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: center;
     
@@ -272,6 +272,7 @@ header h1 {
    
 .pagination-number,
 .pagination-button{
+    color: white;
     font-size: 1.1rem;
     background-color: transparent;
     border: none;
@@ -284,12 +285,14 @@ header h1 {
    
 .pagination-number:hover,
 .pagination-button:not(.disabled):hover {
-    background: #fff;
+    background: #0085b6;
 }
    
 .pagination-number.active {
-    color: #fff;
-    background: #0085b6;
+    /* color: #fff;
+    background: #0085b6; */
+    color: #000000;
+    background: #fff;
 }
 
 .invalid-input{
