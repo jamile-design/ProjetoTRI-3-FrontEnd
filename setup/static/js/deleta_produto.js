@@ -26,40 +26,40 @@ fetch(URLFETCH, requestOptions)
     console.log(statusResponse);
     if (statusResponse === 500) {
       
+      // var requestOptions = {
+      //   method: 'GET',
+      //   headers: myHeaders,
+      //   redirect: 'follow'
+      // };
+      
+      // fetch(URLFETCH, requestOptions)
+      //   .then(response => response.text())
+      //   .then(result => {
+          // result = JSON.parse(result);   
+       
+      let discontinued = '1'
+  
+      var formdata = new FormData();
+      formdata.append("discontinued", discontinued);
+      
       var requestOptions = {
-        method: 'GET',
+        method: 'PATCH', // ANTES AQUI ESTAVA PUT
         headers: myHeaders,
+        body: formdata,
         redirect: 'follow'
       };
       
       fetch(URLFETCH, requestOptions)
         .then(response => response.text())
         .then(result => {
-          // result = JSON.parse(result);   
-       
-          let discontinued = '1'
-      
-          var formdata = new FormData();
-          formdata.append("discontinued", discontinued);
-          
-          var requestOptions = {
-            method: 'PATCH', // ANTES AQUI ESTAVA PUT
-            headers: myHeaders,
-            body: formdata,
-            redirect: 'follow'
-          };
-          
-          fetch(URLFETCH, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-              console.log(result);
-              alert('Produto discontinuado.')
-              window.location.href = '/produtos';
-            })
-            .catch(error => console.log('error', error));
-      
-      })
+          console.log(result);
+          alert('Produto discontinuado.')
+          window.location.href = '/produtos';
+        })
         .catch(error => console.log('error', error));
+      
+      // })
+      //   .catch(error => console.log('error', error));
       
       
 
