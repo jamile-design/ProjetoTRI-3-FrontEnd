@@ -11,11 +11,15 @@ def funcionarios(request):
 def detalhando_funcionario(request, funcionario_id):
     r = requests.get('https://desafiotrimestral.azurewebsites.net/funcionario/get/'+str(funcionario_id), verify=False)
     funcionario = json.loads(r.content)
+    print(funcionario['ativo'])
+    print(type(funcionario['ativo']))
 
-    if funcionario['ativo'] == 0:
-        funcionario['ativo'] = 'Não'
+    # if funcionario['ativo']:
+    #     funcionario['ativo'] = 'Sim'
 
-    funcionario['ativo'] = 'Sim'
+    # if not funcionario['ativo']:
+    #     funcionario['ativo'] = 'Não'
+
 
     funcionario_a_exibir = {
         'funcionario': funcionario,
