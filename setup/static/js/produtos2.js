@@ -1,11 +1,12 @@
 
 let div = document.getElementById('produtos2')
 let arrProdutos = []
-let paginationControl = 1;
+let paginationControl = 2;
 
 async function  insereProdutos(data, array){
     let divProduto = ``
     let listaComProdutos = data.results
+    console.log(listaComProdutos);
     for (produto of listaComProdutos){
         let idProduto = produto.url.replace('http://18.231.157.213/api/products/' , '')
         divProduto += `
@@ -152,7 +153,7 @@ function pagination(){
 function listaDeProdutos() {
     let loading = document.getElementById('principal')
     loading.style.display = 'block'
-    let urlNumber = 2;
+    let urlNumber = 1;
     for (let i = 1; i <= urlNumber; i++) {
         fetch(`http://18.231.157.213/api/products/?page=${i}`, {
             headers: {'Authorization': `Basic ${btoa('Publico:usuariopublico')}` }

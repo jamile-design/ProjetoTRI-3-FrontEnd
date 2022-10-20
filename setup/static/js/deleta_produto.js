@@ -1,4 +1,3 @@
-///////
 var dataurl = document.URL;
 var splitbarra = dataurl.split("/");
 var idURL = splitbarra.find(item => item > 0);
@@ -25,18 +24,6 @@ fetch(URLFETCH, requestOptions)
 
     console.log(statusResponse);
     if (statusResponse === 500) {
-      
-      // var requestOptions = {
-      //   method: 'GET',
-      //   headers: myHeaders,
-      //   redirect: 'follow'
-      // };
-      
-      // fetch(URLFETCH, requestOptions)
-      //   .then(response => response.text())
-      //   .then(result => {
-          // result = JSON.parse(result);   
-       
       let discontinued = '1'
   
       var formdata = new FormData();
@@ -58,11 +45,6 @@ fetch(URLFETCH, requestOptions)
         })
         .catch(error => console.log('error', error));
       
-      // })
-      //   .catch(error => console.log('error', error));
-      
-      
-
     }else{
       console.log(result);
       alert('Produto deletado.');
@@ -70,38 +52,4 @@ fetch(URLFETCH, requestOptions)
     }
   })
   .catch(error => console.log('error', error));
-
-// var requestOptions = {
-//   method: 'GET',
-//   headers: myHeaders,
-//   redirect: 'follow'
-// };
-
-// fetch(`http://18.231.157.213/api/products/${produtoQueSeraDeletado}/`, requestOptions)
-//   .then(response => response.text())
-//   .then(result => {
-//     result = JSON.parse(result);   
- 
-//     let discontinued = '1'
-
-//     var formdata = new FormData();
-//     formdata.append("discontinued", discontinued);
-    
-//     var requestOptions = {
-//       method: 'PATCH', // ANTES AQUI ESTAVA PUT
-//       headers: myHeaders,
-//       body: formdata,
-//       redirect: 'follow'
-//     };
-    
-//     fetch(`http://18.231.157.213/api/products/${produtoQueSeraDeletado}/`, requestOptions)
-//       .then(response => response.text())
-//       .then(result => {
-//         console.log(result);
-//         window.location.href = '/produtos';
-//       })
-//       .catch(error => console.log('error', error));
-
-// })
-//   .catch(error => console.log('error', error));
 

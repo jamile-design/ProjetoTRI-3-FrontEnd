@@ -125,7 +125,7 @@ btnSend.addEventListener('click', (e) =>{
         formData.append('website', website.value);
         // formData.append(, );// aqui iria o salário
         formData.append('FotoArquivo', anexo.files[0], anexo.value); 
-
+        formData.append('ativo', true);
         let requestOptions = {
             method: 'POST',
             // headers: myHeaders,

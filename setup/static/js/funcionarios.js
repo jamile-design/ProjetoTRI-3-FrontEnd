@@ -50,7 +50,7 @@ async function insereFuncionarios(results){
             
 }
 
-function pagination(){
+function pagination(){ 
     const paginationNumbers = document.getElementById("pagination-numbers");
     const paginatedList = document.getElementById("paginated-list");
     const listItems = document.querySelectorAll(".funcionarios");//todos os produtos, o item li não existe
