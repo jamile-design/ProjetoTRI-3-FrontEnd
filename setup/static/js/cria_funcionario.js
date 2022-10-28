@@ -103,12 +103,7 @@ btnSend.addEventListener('click', (e) =>{
         // arrPostalCode.length = 0;
     }
     else{
-        alert('form was send.');
-        // let myHeaders = new Headers();
-        // myHeaders.append("Content-Type", "application/json");
-
-        let formData = new FormData();
-        
+        let formData = new FormData();        
 
         formData.append('nome', nome.value);
         formData.append('sobrenome', sobrenome.value);
@@ -128,7 +123,6 @@ btnSend.addEventListener('click', (e) =>{
         formData.append('ativo', true);
         let requestOptions = {
             method: 'POST',
-            // headers: myHeaders,
             body: formData,
             redirect: 'follow'
         }

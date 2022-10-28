@@ -11,6 +11,7 @@
                 align-items: center;">
 
         <h3 class="" style="color: white; font-size: 25px; margin-top: 2rem; border-style: solid; border-color: #0693e3; padding: 15px; border-radius: 5px;">Criar Funcionário</h3>
+        
         <form method="POST" enctype="multipart/form-data" target="dummyframe" id="form" accept-charset="utf-8" style="width: 78rem;">{% csrf_token %}
             <div class="form-row form-group col-md-4 form-principal" style="
                 font-size: 18px;
@@ -37,15 +38,6 @@
 
                 <label>Cargo
                     <input type="text" class="form-control col-md-3 letras" id="Cargo" name="Cargo" placeholder="Cargo" pattern="[a-zA-Z]*">
-                </label>
-
-                <label>Salário
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">R$</span>
-                        </div>
-                        <input type="number" step="0.1" min="0.0" class="form-control col-md-3" id="Salario" name="Salario" placeholder="Salario">
-                    </div>
                 </label>
 
                 <label>Telefone comercial
@@ -104,7 +96,6 @@
     </main>
 
     <script src="{% static 'js/cria_funcionario.js' %}"></script>
-    <!-- <script src="{% static 'js/select_estados_brasil.js' %}" ></script> -->]
     <script src="{% static 'js/select_pais_estados_cidades.js' %}" ></script>
 
 {% endblock %}

@@ -14,12 +14,11 @@ def detalhando_funcionario(request, funcionario_id):
     print(funcionario['ativo'])
     print(type(funcionario['ativo']))
 
-    # if funcionario['ativo']:
-    #     funcionario['ativo'] = 'Sim'
+    if funcionario['ativo']:
+        funcionario['ativo'] = 'Sim'
 
-    # if not funcionario['ativo']:
-    #     funcionario['ativo'] = 'Não'
-
+    if not funcionario['ativo']:
+        funcionario['ativo'] = 'Não'
 
     funcionario_a_exibir = {
         'funcionario': funcionario,

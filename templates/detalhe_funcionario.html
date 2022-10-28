@@ -8,16 +8,16 @@
 
     <main>
        
-        <div class="row">
-            <div class="col-sm-12" style="margin-left: -16rem; margin-top: 0rem;">	
+        <!-- <div class="row">
+            <div class="col-sm-12" style="">	
                 <span><strong>Nome: </strong>{{ nome }} {{ sobrenome }}</span>
             </div>
         </div>
         <div class="row">	
-            <div class="col-sm-12" style="margin-left: -250px;">	
+            <div class="col-sm-12" style="">	
                 <span><strong>Cargo: </strong>{{ cargo }}</span>
             </div> 
-        </div>
+        </div> -->
         <br/>
         <div class="row">
             <div class="col-sm-6" style= "margin-left: 8rem;">
@@ -25,7 +25,17 @@
             </div>
             <div class="col-sm-6" style="text-align: left; margin-left: 43rem; margin-top: -20.2rem; color: white; font-size: 19px;">
                 <span><strong>Id do empregado: </strong>{{id}}</span>
-                <br/>
+                <div class="row">
+                    <div class="col-sm-12" style="">	
+                        <span><strong>Nome: </strong>{{ nome }} {{ sobrenome }}</span>
+                    </div>
+                </div>
+                <div class="row">	
+                    <div class="col-sm-12" style="">	
+                        <span><strong>Cargo: </strong>{{ cargo }}</span>
+                    </div> 
+                </div>
+                <!-- <br/> -->
                 <span><strong>Telefone comercial: </strong>{{telefoneComercial}}</span>
                 <br/>
                 <span><strong>Telefone residencial: </strong>{{telefoneResidencial}}</span>

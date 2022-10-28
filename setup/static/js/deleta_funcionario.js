@@ -14,52 +14,29 @@ fetch(URL, requestOptions)
     if (result.status === 200){
         alert('Funcionário deletado com SUCESSO.');
         window.location.href = '/funcionarios';
-    }
-    
-    if (result.status === 500) {
-        let formData = new FormData();
-        formData.append('ativo', 'false');
+    } else if (result.status === 500) {
 
-        let requestOptions = {
-            method: 'PATCH',
-            body: formData,
-            redirect: 'follow'
-        }
-
-       
+        var formdata = new FormData();
+        formdata.append("id", "1");
+        formdata.append("ativo", "false");
+        
+        var requestOptions = {
+          method: 'PATCH',
+          body: formdata,
+          redirect: 'follow'
+        };
+        
         fetch(`https://desafiotrimestral.azurewebsites.net/funcionario/patch/${funcionarioQueSeraDeletado}`, requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
+          .then(response => response.json())
+          .then(result => {
+            console.log(result)
             if (result.status === 200){
-                alert('Funcionário desativado com SUCESSO.');
-                window.location.href = '/funcionarios';
+                alert('Funcionário desativado.')
+                window.location.href = '/funcionarios'
             }
         })
-        .catch(err => console.log('Error ', err))
-    }else{
-        // let formData = new FormData();
-
-        // formData.append('ativo', '0');
-
-        // let requestOptions = {
-        //     method: 'PATCH',
-        //     redirect: 'follow'
-        // };
-
-        // fetch()
-        // .then(response => response.json())
-        // .then(result => {
-        //     console.log(result);
-        //     if(result.status === 200){
-        //         alert('Produto Deletado com SUCESSO.');
-        //         window.location.href = '/funcionarios';
-        //     }
-
-            
-            
-        // })
-        // .catch(err => console.log('Error ', err))
+          .catch(error => console.log('error', error));
+    } else{
 
         alert('Funcionario NÃO deletado.');
         window.location.href = '/funcionarios';

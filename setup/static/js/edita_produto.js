@@ -35,9 +35,9 @@ var requestOptions = {
 };
 
 fetch(`http://18.231.157.213/api/products/${produtoQueSeraEditado}/`, requestOptions)
-  .then(response => response.text())
+  .then(response => response.json())
   .then(result => {
-    result = JSON.parse(result)
+    // result = JSON.parse(result)
     
     productCode.value = result.product_code
     productName.value = result.product_name
@@ -69,7 +69,8 @@ fetch(`http://18.231.157.213/api/products/${produtoQueSeraEditado}/`, requestOpt
 //enviando a atualização com o verbo product_name
 let btnEditar = document.getElementById('btn-editar');
 
-btnEditar.addEventListener('click', () =>{
+btnEditar.addEventListener('click', (e) =>{
+  e.preventDefault();
   let discontinued = document.querySelector('input[name="descontinuado"]:checked')
 
 
@@ -106,17 +107,16 @@ btnEditar.addEventListener('click', () =>{
     body: formData,
     redirect: 'follow'
   };
-  let statusRequest;
-
+  let statusCode; 
   fetch(`http://18.231.157.213/api/products/${idURL}/`, requestOptions)
     .then(response => {
-      response.text();
-      statusRequest = response.status;
+      response.json();
+      statusCode = response.status;
     })
     .then(result => {
-      console.log(result)
+      console.log(statusCode);
       
-      if (statusRequest === 200 || statusRequest === 201 || statusRequest === 202){
+      if (statusCode === 200 || statusCode === 201 || statusCode === 202){
         alert(`Produto ${nomeProdutoAlert}, foi editado.`);
         window.location.href = '/produtos'; //redireciona da página de editar produto para a de produtos.
       }

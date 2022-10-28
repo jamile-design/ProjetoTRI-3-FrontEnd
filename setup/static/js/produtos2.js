@@ -5,8 +5,8 @@ let paginationControl = 2;
 
 async function  insereProdutos(data, array){
     let divProduto = ``
-    let listaComProdutos = data.results
-    console.log(listaComProdutos);
+    let listaComProdutos = data.results;
+    
     for (produto of listaComProdutos){
         let idProduto = produto.url.replace('http://18.231.157.213/api/products/' , '')
         divProduto += `
