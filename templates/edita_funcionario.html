@@ -2,16 +2,18 @@
 {% load static %}
 {% block content %}
 <meta charset="UTF-8">
-<title>Criar Funcionario</title>
+<title>Editar Funcionario</title>
 
     {% include 'partials/_menu.html' %}
-
-    <main style="display: flex;
+    <section id="principal" class="principal" style=" margin-left: 2rem;">
+        <div class="load is-animation" id="load"></div>
+    </section>
+    <main style="display: none;
                 flex-direction: column;
                 align-items: center;">
 
-        <h3 class="" style="color: white; font-size: 25px; margin-top: 2rem; border-style: solid; border-color: #0693e3; padding: 15px; border-radius: 5px;">Criar Funcionário</h3>
-        
+        <h3 class="" style="color: white; font-size: 25px; margin-top: 2rem; border-style: solid; border-color: #0693e3; padding: 15px; border-radius: 5px;">Editar Funcionário</h3>
+
         <form method="POST" enctype="multipart/form-data" target="dummyframe" id="form" accept-charset="utf-8" style="width: 78rem;">{% csrf_token %}
             <div class="form-row form-group col-md-4 form-principal" style="
                 font-size: 18px;
@@ -37,8 +39,30 @@
                 </label>
 
                 <label>Cargo
-                    <input type="text" class="form-control col-md-3 letras" id="Cargo" name="Cargo" placeholder="Cargo" pattern="[a-zA-Z]*">
+                    <input type="text" class="form-control col-md-3 letras" id="Cargo" name="Cargo" placeholder="Cargo" >
                 </label>
+
+                <label>Salário
+                    <br/>
+                    <button id="btn_modal" class="btn btn-secondary">Atualiza salário</button>
+                </label>
+                <br/>
+
+                <label> <h4>Histórico dos salários</h4></label>
+                <table class="salaryTable" style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th
+                            style="border: 2px solid #ddd;">Salário</th>
+                            <th
+                             style="border: 2px solid #ddd;">Data atualização</th>
+                        </tr>
+                       
+                    </thead>
+                    
+                    <tbody id="salary_table">
+                    </tbody>
+                </table>
 
                 <label>Telefone comercial
                     <input type="tel" class="form-control only_numbers dez_digito_obrigatorio" id="telefone_comercial" maxlength="10" name="Telefone" placeholder="Telefone comercial">
@@ -62,6 +86,9 @@
                 <label id="label-estado">Estado
                     <select id="estadosBrasil" name="estadosBrasil" class="form-control">
                         <option value="null">Selecione um País</option>
+                        <!-- <option value="Virgínia">Virgínia</option>
+                        <option value="Boston">Boston</option>
+                        <option value="Washington">Washington</option> -->
                     </select>
                 </label>
 
@@ -83,19 +110,72 @@
                     <input type="url" class="form-control" id="website" placeholder="Website">
                 </label>
 
+                <label>Ativo</label>
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label>Não  <input class="" type="radio" id="desativo" value="false" checked="checked" name="ativo"></label>
+                                                            
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label>Sim  <input class="" type="radio" id="ativo" value="true" name="ativo"></label>
+                            
+                            
+                        </div>
+                    </div>
+
                 <label>Observação
                     <textarea type="text" class="form-control" id="observacao"></textarea>
                 </label>
 
                 <br/>
+                
 
-                <button id="btn-enviar" style="width: 200px; height: 50px;margin-left: 26%; margin-bottom: 100px; border-radius: 8px;" >Enviar</button>
-
+                <button id="btn-editar" style="width: 200px; height: 50px;margin-left: 26%; margin-bottom: 100px; border-radius: 8px;" >Editar</button>
+                
             </div>
         </form>
     </main>
+    <div id="modal_salario" class="modal_container" style="
+    width: 100vw; height: 100vh;
+    position:fixed; 
+    top:0px;left:0px; color:white;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 3000;
+    display:none;
+    /* justify-content:center;
+    align-items:center; */
+    
 
-    <script src="{% static 'js/cria_funcionario.js' %}"></script>
-    <script src="{% static 'js/select_pais_estados_cidades.js' %}" ></script>
+    " >
+        <div class="modal" style="
+        display:block;
+        background: #eeeeee;
+        width: 20rem; min-width: 250px;
+        height: 15rem;
+        padding:40px;
+        border: 5px solid #034971;
+        margin-top: 10%;
+        margin-left: 33%;
+        ">
+            <h3 style="color:black; ">
+                Salário:
+            </h3>
+            <label>
+                <input type="number" id="salario" class="form-control" min="1" step="0.1" placeholder="Adicione o salário">
+            </label>
+
+            <br/>
+            <br/>
+            <button id="btn_salvar" class="btn" style="background:#0693e3; color:white; margin-right: 10px;">Salvar</button>
+            <button id="btn_cancelar" class="btn btn-danger">Cancelar</button>
+        </div>
+    </div>
+    
+
+    <script src="{% static 'js/edita_funcionario.js' %}"></script>
+    <script src="{% static 'js/modal_salario.js' %}"></script>
 
 {% endblock %}

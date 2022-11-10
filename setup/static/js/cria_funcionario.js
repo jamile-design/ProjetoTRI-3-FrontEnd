@@ -29,6 +29,19 @@ let observacao = document.getElementById('observacao');
 
 const btnSend = document.getElementById('btn-enviar');
 
+function readImage() {
+    if (this.files && this.files[0]) {
+      var file = new FileReader();
+  
+      file.onload = function(e) {
+        fotoEscolhida.src = e.target.result;
+      };       
+      file.readAsDataURL(this.files[0]);
+    }
+    fotoEscolhida.style.display = 'block'
+}
+
+anexo.addEventListener('change', readImage, false);
 
 function restrinctChar(field, regex, message){
     function checkchar(e, pattern){
@@ -69,81 +82,58 @@ btnSend.addEventListener('click', (e) =>{
         if  (input.value === null || input.value == '' || input.value.length == 0){
             arrEmptyFields.push(`\n${input.placeholder}`);
         }
-    })
 
-    if (arrEmptyFields.length > 0){
-        if(observacao.value.length < 1){
-            observacao.value = 'Empty';
-        }else{
-            alert(`Os campos ${arrEmptyFields}\nnão podem estar vazios.`);
-            arrEmptyFields.length = 0;
-        }
+    })
+    if (observacao.value.length === 0 || observacao.value.length === null){
+        arrEmptyFields.push(`\nObservação`);       
+    }
+
+    
+    if (arrEmptyFields.length > 0){      
+        alert(`Os campos ${arrEmptyFields}\nnão podem estar vazios.`);
+        arrEmptyFields.length = 0;
+        
     }
     else if (arrErrorsTel.length > 0){
         alert(`Os campos ${arrErrorsTel}\n não podem ter menos de 10 dígitos.`);
         arrErrorsTel.length = 0;
     }
     else if (codigoPostal.value.length < 6){
-        alert(`O campo ${codigoPostal.placeholder}\n não podem ter menos de 6 dígitos.`);
+        alert(`O campo ${codigoPostal.placeholder}\n não pode ter menos de 6 dígitos.`);
         // arrPostalCode.length = 0;
     }
     else{
-        alert('form was send.');
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        let formData = new FormData();        
 
-        // let formData = new FormData();
-        
-
-        // formData.append('nome', nome.value);
-        // formData.append('sobrenome', sobrenome.value);
-        // formData.append('cargo', cargo.value);
-        // formData.append('telefoneComercial', telefoneComercial.value);
-        // formData.append('telefoneResidencial', telefoneResidencial.value);
-        // formData.append('telefoneCelular', telefoneCelular.value);
-        // formData.append('endereco', enderecoResidencial.value);
-        // formData.append('codigoPostal', codigoPostal.value);	
-        // formData.append('cidade', cidades.value);
-        // formData.append('pais', paises.value);
-        // formData.append('estado', estados.value);
-        // formData.append('observacao', observacao.value);
-        // formData.append('website', website.value);
+        formData.append('nome', nome.value);
+        formData.append('sobrenome', sobrenome.value);
+        formData.append('cargo', cargo.value);
+        formData.append('telefoneComercial', telefoneComercial.value);
+        formData.append('telefoneResidencial', telefoneResidencial.value);
+        formData.append('telefoneCelular', telefoneCelular.value);
+        formData.append('endereco', enderecoResidencial.value);
+        formData.append('codigoPostal', codigoPostal.value);	
+        formData.append('cidade', cidades.value);
+        formData.append('pais', paises.value);
+        formData.append('estado', estados.value);
+        formData.append('observacao', observacao.value);
+        formData.append('website', website.value);
         // formData.append(, );// aqui iria o salário
-        // formData.append('foto', anexo.files[0], anexo.value); 
-
-        let raw = JSON.stringify({
-            "nome": nome.value,
-            "sobrenome": sobrenome.value,
-            "cargo": cargo.value,
-            "telefoneComercial": telefoneComercial.value,
-            "telefoneResidencial": telefoneResidencial.value,
-            "telefoneCelular": telefoneCelular.value,
-            "endereco": enderecoResidencial.value,
-            "cidade": cidades.value,
-            "estado": estados.value,
-            "codigoPostal": codigoPostal.value,
-            "pais": paises.value,
-            "website": website.value,
-            "observacao": observacao.value,
-            // "foto": anexo.files[0]
-            "foto": null
-        })
-    
+        formData.append('FotoArquivo', anexo.files[0], anexo.value); 
+        formData.append('ativo', true);
         let requestOptions = {
             method: 'POST',
-            headers: myHeaders,
-            body: raw,
+            body: formData,
             redirect: 'follow'
         }
 
         const URLCreateEmployee = 'https://desafiotrimestral.azurewebsites.net/funcionario/post';
 
-        const statusResponse = 0;
         fetch(URLCreateEmployee, requestOptions)
         .then(response => response.json())
         .then(result => {
             console.log(result);
-            if (statusResponse === 200){
+            if (result.status === 200){
                 alert('Funcionario criado.');
                 window.location.href = '/funcionarios'
             }else{
